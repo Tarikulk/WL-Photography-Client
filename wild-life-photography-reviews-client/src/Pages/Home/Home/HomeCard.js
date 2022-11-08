@@ -3,8 +3,8 @@ import React from 'react';
 const HomeCard = ({service}) => {
      const {img, name, price, description} = service;
     return (
-        <div className='mt-10'>
-           <div className="card card-compact w-96 bg-base-100 shadow-xl">
+        <div>
+           <div className="card card-compact w-96 bg-base-100 shadow-xl mt-10">
   <figure><img src={img} style={{height:"200px"}} className="w-full" alt="Shoes" /></figure>
   <div className="card-body">
     <div className='flex justify-between items-center'>
@@ -13,7 +13,7 @@ const HomeCard = ({service}) => {
     </div>
     <p>Details:{description}</p> 
   </div>
-</div>
+</div> 
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Banner from '../../Shared/Banner/Banner';
 import Section from '../../Shared/Section/Section';
 import HomeCard from './HomeCard';
@@ -20,6 +21,7 @@ const Home = () => {
                service={service}
                ></HomeCard>)
             }
+     
            </div>
             <Section></Section>
         </div>
