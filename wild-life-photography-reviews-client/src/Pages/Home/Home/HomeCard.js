@@ -6,7 +6,9 @@ const HomeCard = ({service}) => {
     return (
         <div>
            <div className="card card-compact w-96 bg-base-100 shadow-xl mt-10">
-  <figure><img src={img} style={{height:"200px"}} className="w-full" alt="Shoes" /></figure>
+  <figure>
+    <img src={img} style={{height:"200px"}} className="w-full" alt="Shoes" />
+  </figure>
   <div className="card-body">
     <div className='flex justify-between items-center'>
     <h2 className="card-title">Name: {name}</h2>
