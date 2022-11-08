@@ -21,7 +21,9 @@ const Home = () => {
                service={service}
                ></HomeCard>)
             }
-     
+           </div>
+           <div className='w-full text-center my-10'>
+          <Link to="/services"><button className="btn btn-wide btn-primary">See All</button></Link>
            </div>
             <Section></Section>
         </div>
