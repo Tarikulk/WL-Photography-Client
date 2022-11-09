@@ -5,7 +5,13 @@ import "./Header.css"
 
 const Header = () => {
 
-    const {user} = useContext(AuthContext)
+    const {user, userLogout} = useContext(AuthContext)
+
+    const handleLogOut = () =>{
+         userLogout()
+         .then(() =>{})
+         .catch(error => console.error(error));
+    }
 
     return (
         <div>
@@ -32,30 +38,16 @@ const Header = () => {
                     <li><Link className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/">Home</Link></li>
                     <li><Link className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/services">Services</Link></li>
                     <li><Link className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/blog">Blog</Link></li>
-                    <li><Link className="md:px-6  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/contact">Contact Us</Link></li>
-                    {
-                        user?.uid ?
-                        <div className="dropdown  md:dropdown-start lg:dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                          <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" alt='' />
-                          </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                          <li>
-                            <Link className="justify-between">
-                              Profile
-                              <span className="badge">New</span>
-                            </Link>
-                          </li>
-                          <li><Link>Settings</Link></li>
-                          <li><Link>Logout</Link></li>
-                        </ul>
-                      </div> 
+         
+                    {  user?.uid ?
+                      <>
+                       <li><Link className="md:px-4  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/addServices">Add Services</Link></li>
+                      <li><Link className="md:px-4  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/myReviews">My Reviews</Link></li>
+                      <li><button onClick={handleLogOut} className="md:px-4  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800">Log Out</button></li>
+                      </>
                       :
-                        <li><Link className="md:px-6  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/register">Register</Link></li>
-                    }
-                 
+                      <li><Link className="md:px-6  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/register">Register</Link></li>
+                    } 
                 </ul>
             </nav>
         </div>
