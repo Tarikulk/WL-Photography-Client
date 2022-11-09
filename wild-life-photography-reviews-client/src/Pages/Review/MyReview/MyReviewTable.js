@@ -23,9 +23,9 @@ const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     </div>
     <p>Review: {review}</p>
     <div className="card-actions flex justify-between items-center w-full">
-      {/* <Link to={`/updateReviews/${_id}`}>
+      <Link to={`/updateReviews/${_id}`}>
       <button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button>
-      </Link> */}
+      </Link>
       <button onClick={() => handleDeleteReview(_id)}  className="btn btn-ghost">Delete</button>
     </div>
   </div>
