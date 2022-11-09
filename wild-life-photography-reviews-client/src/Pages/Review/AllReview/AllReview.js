@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AllReview = ({allReview}) => {
-    const {email, image, name, servicesId, review} = allReview;
+    const {email, image, name, review} = allReview;
     return (
             <tr> 
         <td>
@@ -20,10 +20,7 @@ const AllReview = ({allReview}) => {
           {email}
           <br/>
         </td>
-        <td>{review}</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">Edit</button>
-        </th>
+        <td>{review}</td> 
       </tr> 
     );
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import AllReview from '../../Review/AllReview/AllReview';
 
@@ -78,7 +78,6 @@ const ServiceDetails = () => {
         <th>User</th>
         <th>Email</th>
         <th>Review</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -95,51 +94,61 @@ const ServiceDetails = () => {
        <div className='mt-10'></div>
        
         </div>
-        <section className="p-6 dark:bg-green-600 dark:text-gray-50 rounded-lg">
-	<form onSubmit={handleAddReview} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-		<fieldset className="p-6 rounded-md shadow-sm dark:bg-green-700">
-        <div className="space-y-2 w-full flex items-center justify-center">
-				<div>
-                <p className="font-medium text-center">Reviews</p>
-				<p className="text-xs text-center">Reviews Of This Work. Put Your Review</p>
-                </div>
-			</div> 
-		</fieldset>
-		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-green-700">
-			<div className="space-y-2 col-span-full lg:col-span-1">
-				<p className="font-medium">ALL REVIEWS</p>
-				<p className="text-xs">Help Us By Giving Your Valuable Review.</p>
-			</div>
-			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">    
-				<div className="col-span-full sm:col-span-3">
-					<label for="name" className="text-sm">Username</label>
-					<input id="name" type="text" placeholder="name" name='name' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label for="email" className="text-sm">Email</label>
-					<input id="email" type="text" placeholder="email" name='email' defaultValue={user?.email} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label for="image" className="text-sm">Image</label>
-					<input id="image" type="text" placeholder="image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label for="servicesId" className="text-sm">Services id</label>
-					<input id="servicesId" type="text" placeholder="services Id" name='servicesId' defaultValue={details?._id} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-				</div>
-				<div className="col-span-full">
-					<label for="bio" className="text-sm">Review</label>
-					<textarea id="bio" placeholder="" name='review' className="p-2 w-full h-32 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"></textarea>
-				</div>
-				<div className="col-span-full">
-					<div className="flex items-center justify-center">
-						<button type="submit" className="px-4 py-2 border rounded-md dark:border-gray-100">Add Review</button>
-					</div>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-</section>
+        {
+            user?.uid ?
+
+            <section className="p-6 dark:bg-green-600 dark:text-gray-50 rounded-lg">
+            <form onSubmit={handleAddReview} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+                <fieldset className="p-6 rounded-md shadow-sm dark:bg-green-700">
+                <div className="space-y-2 w-full flex items-center justify-center">
+                        <div>
+                        <p className="font-medium text-center">Reviews</p>
+                        <p className="text-xs text-center">Reviews Of This Work. Put Your Review</p>
+                        </div>
+                    </div> 
+                </fieldset>
+                <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-green-700">
+                    <div className="space-y-2 col-span-full lg:col-span-1">
+                        <p className="font-medium">ALL REVIEWS</p>
+                        <p className="text-xs">Help Us By Giving Your Valuable Review.</p>
+                    </div>
+                    <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">    
+                        <div className="col-span-full sm:col-span-3">
+                            <label for="name" className="text-sm">Username</label>
+                            <input id="name" type="text" placeholder="name" name='name' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                        </div>
+                        <div className="col-span-full sm:col-span-3">
+                            <label for="email" className="text-sm">Email</label>
+                            <input id="email" type="text" placeholder="email" name='email' defaultValue={user?.email} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                        </div>
+                        <div className="col-span-full sm:col-span-3">
+                            <label for="image" className="text-sm">Image</label>
+                            <input id="image" type="text" placeholder="image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                        </div>
+                        <div className="col-span-full sm:col-span-3">
+                            <label for="servicesId" className="text-sm">Services id</label>
+                            <input id="servicesId" type="text" placeholder="services Id" name='servicesId' defaultValue={details?._id} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                        </div>
+                        <div className="col-span-full">
+                            <label for="bio" className="text-sm">Review</label>
+                            <textarea id="bio" placeholder="" name='review' className="p-2 w-full h-32 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"></textarea>
+                        </div>
+                        <div className="col-span-full">
+                            <div className="flex items-center justify-center">
+                                <button type="submit" className="px-4 py-2 border rounded-md dark:border-gray-100">Add Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+        :
+        <Link to="/login"> 
+        <div className='flex justify-center  py-10 bg-green-400 rounded-lg text-white'>
+            <h1 className='text-3xl bg-green-700 w-1/2 text-center rounded-lg'>Please login to add a review</h1>
+        </div>
+        </Link>
+        }
 
 
        </div>

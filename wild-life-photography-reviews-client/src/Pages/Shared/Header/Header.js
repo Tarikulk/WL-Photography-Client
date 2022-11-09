@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import "./Header.css"
 
 const Header = () => {
 
     const {user, userLogout} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleLogOut = () =>{
          userLogout()
-         .then(() =>{})
+         .then(() =>{
+          navigate("/login")
+         })
          .catch(error => console.error(error));
     }
 
@@ -46,7 +49,7 @@ const Header = () => {
                       <li><button onClick={handleLogOut} className="md:px-4  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800">Log Out</button></li>
                       </>
                       :
-                      <li><Link className="md:px-6  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/register">Register</Link></li>
+                      <li><Link className="md:px-6  py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-green-800" to="/login">Login</Link></li>
                     } 
                 </ul>
             </nav>
