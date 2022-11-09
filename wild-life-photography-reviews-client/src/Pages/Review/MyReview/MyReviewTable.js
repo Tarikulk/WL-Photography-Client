@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const MyReviewTable = ({reviews}) => {
-    const {name, email, review} = reviews;
+const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
+    const {review, servicesId, _id} = reviews;
+
+    const [services, setServices] = useState({});
+
+    useEffect(() =>{
+        fetch(`http://localhost:5000/services/${servicesId}`)
+        .then(res => res.json())
+        .then(data =>  setServices(data))
+    }, [servicesId])
+
+
     return (
-        <div>
+        <div className='my-20'>
             <div className="card w-96 bg-green-400   text-black">
+            <figure><img src={services?.img} className="w-full" style={{height:"200px"}} alt="Shoes" /></figure>
   <div className="card-body items-center text-center">
-    <h2 className="card-title">{name}</h2>
-    <p>{review}</p>
+    <div className='mx-auto'>
+    <h2 className="card-title w-full">Service Name: {services?.name}</h2>
+    </div>
+    <p>Review: {review}</p>
     <div className="card-actions flex justify-between items-center w-full">
-      <button className="btn btn-primary">Edit</button>
-      <button className="btn btn-ghost">Delete</button>
+      {/* <Link to={`/updateReviews/${_id}`}>
+      <button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button>
+      </Link> */}
+      <button onClick={() => handleDeleteReview(_id)}  className="btn btn-ghost">Delete</button>
     </div>
   </div>
 </div>
