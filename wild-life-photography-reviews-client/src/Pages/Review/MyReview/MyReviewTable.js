@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
-    const {review, servicesId, _id} = reviews;
+    const {review, name, servicesId, _id} = reviews;
+    console.log(reviews)
 
     const [services, setServices] = useState({});
 
@@ -11,8 +12,7 @@ const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
         .then(res => res.json())
         .then(data =>  setServices(data))
     }, [servicesId])
-
-
+ 
     return (
         <div className='my-20'>
             <div className="card w-96 bg-green-400   text-black">
@@ -21,11 +21,12 @@ const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     <div className='mx-auto'>
     <h2 className="card-title w-full">Service Name: {services?.name}</h2>
     </div>
-    <p>Review: {review}</p>
+    <div>
+        <h1><span className='font-bold'>UserName: </span>{name}</h1>
+    </div>
+    <p><span className='font-bold'>Review: </span>{review}</p>
     <div className="card-actions flex justify-between items-center w-full">
-      <Link to={`/updateReviews/${_id}`}>
-      <button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button>
-      </Link>
+      <Link to={`/updateReviews/${_id}`}><button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button></Link>
       <button onClick={() => handleDeleteReview(_id)}  className="btn btn-ghost">Delete</button>
     </div>
   </div>

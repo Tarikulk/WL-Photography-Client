@@ -14,17 +14,7 @@ const MyReview = () => {
     }, [user?.email])
 
     const handleUpdateReview = (id) =>{
-        fetch(`http://localhost:5000/reviews/${id}`, {
-            method:"PUT",
-            headers:{
-                "content-type":"application/json"
-            },
-            body: JSON.stringify()
-        })
-        .then(res => res.json())
-        .then(data => {
-            
-        })
+        
     }
 
     const handleDeleteReview = (id) =>{

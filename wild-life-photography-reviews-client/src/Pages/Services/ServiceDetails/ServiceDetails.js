@@ -34,8 +34,10 @@ const ServiceDetails = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            form.reset();
+            if(data.acknowledged){
+                alert("Review Added Successfully")
+                form.reset();
+            }
         })
 
     }
@@ -80,7 +82,7 @@ const ServiceDetails = () => {
       </tr>
     </thead>
     <tbody>
-      {
+       {
         reviews.map(allReview => <AllReview
         key={allReview._id}
         allReview={allReview}
