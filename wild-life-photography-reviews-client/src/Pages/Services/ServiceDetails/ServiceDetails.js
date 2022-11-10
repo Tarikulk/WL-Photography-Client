@@ -2,8 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import AllReview from '../../Review/AllReview/AllReview';
+import useTitle from '../../Shared/Hooks/useTitle';
 
 const ServiceDetails = () => {
+
+    useTitle("Details")
+
     const {user} = useContext(AuthContext)
     const details = useLoaderData();
 

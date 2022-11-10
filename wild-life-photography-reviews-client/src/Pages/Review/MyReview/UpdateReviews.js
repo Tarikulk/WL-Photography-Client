@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../Shared/Hooks/useTitle';
 
 const UpdateReviews = ({handleDeleteReview}) => {
+
+    useTitle("Edit")
   
     const StoredReviews = useLoaderData()
       

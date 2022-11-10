@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Shared/Hooks/useTitle';
 
 const AllServicesCard = ({service}) => {
+
+    useTitle("All Services")
+
     const {img, name, price, description, ratings, _id} = service;
     return (
         <div className='mt-20'>

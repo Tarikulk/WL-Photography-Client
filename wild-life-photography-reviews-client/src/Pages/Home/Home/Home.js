@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Banner from '../../Shared/Banner/Banner';
+import useTitle from '../../Shared/Hooks/useTitle';
 import Section from '../../Shared/Section/Section';
 import HomeCard from './HomeCard';
 
 const Home = () => {
+
+    useTitle("Home")
+
     const [services, setServices] = useState([]);
     useEffect(() =>{
         fetch("http://localhost:5000/services")

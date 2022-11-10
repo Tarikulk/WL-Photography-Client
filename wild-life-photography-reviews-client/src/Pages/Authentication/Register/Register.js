@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useTitle from '../../Shared/Hooks/useTitle';
 
 const Register = () => {
+
+	useTitle("Register")
 
 	const {createUser, updateUserProfile, githubLogin, googleLogin} = useContext(AuthContext);
 

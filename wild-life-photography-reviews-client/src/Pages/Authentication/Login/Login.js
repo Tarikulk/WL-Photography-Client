@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useTitle from '../../Shared/Hooks/useTitle';
 
 const Login = () => {
+
+    useTitle("Login")
 
     const {signInUser, googleLogin, githubLogin} = useContext(AuthContext)
 

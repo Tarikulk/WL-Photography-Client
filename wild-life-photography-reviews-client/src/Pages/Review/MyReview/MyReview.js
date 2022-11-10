@@ -2,13 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useTitle from '../../Shared/Hooks/useTitle';
 import MyReviewTable from './MyReviewTable';
 
 const MyReview = () => {
+
+    useTitle("My Review")
+
     const {user, userLogout} = useContext(AuthContext);
     const [myReview, setMyReview] = useState([]);
     useEffect(() =>{
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`
+        , {
             headers:{
                 authorization: `Bearer ${localStorage.getItem("wl-photography")}`
             }
@@ -50,7 +55,7 @@ const MyReview = () => {
     return (
         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {
-               myReview.map(reviews => <MyReviewTable
+               myReview?.map(reviews => <MyReviewTable
                key={reviews._id}
                reviews={reviews}
                handleDeleteReview={handleDeleteReview}
