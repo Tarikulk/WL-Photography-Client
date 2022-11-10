@@ -2,7 +2,7 @@ import React from 'react';
 
 const AllReview = ({allReview}) => {
 
-  
+     
 
     const {email, image, name, review} = allReview;
     return (
