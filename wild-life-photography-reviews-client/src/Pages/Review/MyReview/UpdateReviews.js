@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 
-const UpdateReviews = () => {
- 
+const UpdateReviews = ({handleDeleteReview}) => {
   
     const StoredReviews = useLoaderData()
-     
-    console.log(StoredReviews)
-
+      
     const handleUpdateReview = (event) =>{
         event.preventDefault()
         const form = event.target;

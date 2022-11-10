@@ -145,7 +145,7 @@ const ServiceDetails = () => {
         :
         <Link to="/login"> 
         <div className='flex justify-center  py-10 bg-green-400 rounded-lg text-white'>
-            <h1 className='text-3xl bg-green-700 w-1/2 text-center rounded-lg'>Please login to add a review</h1>
+            <h1 className='text-3xl bg-green-700 w-1/2 text-center rounded-lg py-2 hover:bg-green-500 transition'>Please login to add a review</h1>
         </div>
         </Link>
         }

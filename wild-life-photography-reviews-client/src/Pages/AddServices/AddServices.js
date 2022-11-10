@@ -1,4 +1,6 @@
 import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddServices = () => {
 
@@ -26,7 +28,7 @@ const AddServices = () => {
       .then(res => res.json())
       .then(data => {
          if(data.acknowledged){
-            alert("services added successfully")
+            toast("services added successfully", {autoClose: 2000})
             form.reset();
          }
       })
@@ -73,6 +75,7 @@ const AddServices = () => {
 		</fieldset>
 	</form>
 </section>
+<ToastContainer></ToastContainer>
         </div>
     );
 };

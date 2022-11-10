@@ -1,17 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import MyReviewTable from './MyReviewTable';
 
 const MyReview = () => {
-    const {user} = useContext(AuthContext);
+    const {user, userLogout} = useContext(AuthContext);
     const [myReview, setMyReview] = useState([]);
     useEffect(() =>{
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-        .then(res => res.json())
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers:{
+                authorization: `Bearer ${localStorage.getItem("wl-photography")}`
+            }
+        })
+        .then(res => {
+           if(res.status === 401 || res.status === 403){
+            return userLogout();
+           }    
+           return res.json()
+        })
         .then(data => {
              setMyReview(data)
         })
-    }, [user?.email])
+        .catch(error => console.error(error))
+
+    }, [user?.email, userLogout])
 
     const handleUpdateReview = (id) =>{
         
@@ -26,7 +39,7 @@ const MyReview = () => {
             .then(res => res.json())
             .then(data =>{
                 if(data.deletedCount > 0){
-                    alert("deleted successfully")
+                    toast.success("deleted successfully", {autoClose: 2000})
                     const remaining = myReview.filter( review => review._id !== id);
                     setMyReview(remaining);
                 }
@@ -44,6 +57,7 @@ const MyReview = () => {
                handleUpdateReview={handleUpdateReview}
                ></MyReviewTable>)
             }
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
