@@ -12,13 +12,12 @@ const MyReview = () => {
     const {user, userLogout} = useContext(AuthContext);
     const [myReview, setMyReview] = useState([]);
     useEffect(() =>{
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`
-        , {
+        fetch(`https://wild-life-photography-reviews-server.vercel.app/reviews?email=${user?.email}`, {
             headers:{
                 authorization: `Bearer ${localStorage.getItem("wl-photography")}`
             }
         })
-        .then(res => {
+        .then(res => { 
            if(res.status === 401 || res.status === 403){
             return userLogout();
            }    
@@ -38,7 +37,7 @@ const MyReview = () => {
     const handleDeleteReview = (id) =>{
         const proceed = window.confirm("Are you sure, you want to delete this item ?")
         if(proceed){
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://wild-life-photography-reviews-server.vercel.app/reviews/${id}`, {
                method:"DELETE"
             })
             .then(res => res.json())
@@ -53,14 +52,20 @@ const MyReview = () => {
     }
 
     return (
-        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {
-               myReview?.map(reviews => <MyReviewTable
-               key={reviews._id}
-               reviews={reviews}
-               handleDeleteReview={handleDeleteReview}
-               handleUpdateReview={handleUpdateReview}
-               ></MyReviewTable>)
+        <div>
+            {  myReview.length > 0 ?
+              <div className='w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 '>
+                {
+                     myReview?.map(reviews => <MyReviewTable
+                        key={reviews._id}
+                        reviews={reviews}
+                        handleDeleteReview={handleDeleteReview}
+                        handleUpdateReview={handleUpdateReview}
+                        ></MyReviewTable>)
+                }
+              </div>
+               :
+                <h1 className='text-3xl w-full h-96 flex items-center justify-center'>No reviews were added</h1>
             }
             <ToastContainer></ToastContainer>
         </div>

@@ -18,10 +18,14 @@ const AddServices = () => {
 
 
        const addServices = {
-        name, price, ratings, image, description
+        name:name, 
+		price:price, 
+		ratings:ratings, 
+		image:image, 
+		description:description
        };
 
-       fetch("http://localhost:5000/allServices", {
+       fetch("https://wild-life-photography-reviews-server.vercel.app/allServices", {
         method:"POST",
         headers:{
             "content-type":"application/json"
@@ -63,7 +67,7 @@ const AddServices = () => {
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label for="image" className="text-sm">Image</label> 
-                    <input type="text" placeholder="Upload Image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" /> 
+                    <input type="text" id='image' placeholder="Upload Image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" /> 
 				</div>
 				<div className="col-span-full">
 					<label for="bio" className="text-sm">Description</label>

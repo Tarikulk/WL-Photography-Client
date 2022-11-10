@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import UpdateReviews from './UpdateReviews';
 
 const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     const {review, name, servicesId, _id} = reviews;
@@ -9,14 +8,17 @@ const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     const [services, setServices] = useState({});
 
     useEffect(() =>{
-        fetch(`http://localhost:5000/services/${servicesId}`)
+        fetch(`https://wild-life-photography-reviews-server.vercel.app/services/${servicesId}`)
         .then(res => res.json())
         .then(data =>  setServices(data))
     }, [servicesId])
  
     return (
+
+
+
         <div className='my-20'>
-            <div className="card w-96 bg-green-400 text-black" style={{height:"400px"}}>
+            <div className="card w-full bg-green-400 text-black" style={{height:"400px"}}>
             <figure><img src={services?.img} className="w-full" style={{height:"200px"}} alt="Shoes" /></figure>
   <div className="card-body items-center text-center">
     <div className='mx-auto'>

@@ -29,7 +29,8 @@ export const router = createBrowserRouter([
         {
             path:"/allServicesDetail/:id",
             element:<ServiceDetails></ServiceDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+            loader: ({params}) => {
+               return fetch(`https://wild-life-photography-reviews-server.vercel.app/services/${params.id}`)}
         },
         {
             path:"/addServices",
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
         {
             path:"/updateReviews/:id",
             element:<PrivateRoute><UpdateReviews></UpdateReviews></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`) 
+            loader: ({params}) => fetch(`https://wild-life-photography-reviews-server.vercel.app/reviews/${params.id}`) 
         },
         {
             path:"/blog",

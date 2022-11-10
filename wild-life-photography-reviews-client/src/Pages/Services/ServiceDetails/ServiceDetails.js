@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import AllReview from '../../Review/AllReview/AllReview';
 import useTitle from '../../Shared/Hooks/useTitle';
@@ -8,8 +9,22 @@ const ServiceDetails = () => {
 
     useTitle("Details")
 
-    const {user} = useContext(AuthContext)
     const details = useLoaderData();
+    const {user} = useContext(AuthContext)
+
+    const [reviews, setReviews] = useState([]); 
+    
+    useEffect(() =>{
+        fetch("https://wild-life-photography-reviews-server.vercel.app/reviews")
+        .then(res => res.json(
+        ))
+        .then(data =>{
+            const newData = [reviews, ...data];
+            setReviews(newData) 
+        }
+        )
+    }, [reviews])
+    
 
     const handleAddReview = (event) =>{
         event.preventDefault()
@@ -20,7 +35,7 @@ const ServiceDetails = () => {
         const image = form.image.value;
         const review = form.review.value;
         console.log(name, email, servicesId, image, review)
-
+        
         const allReview = { 
             name, 
             email,
@@ -29,7 +44,8 @@ const ServiceDetails = () => {
             review
         }
 
-        fetch("http://localhost:5000/reviews", {
+        
+        fetch("https://wild-life-photography-reviews-server.vercel.app/reviews", {
             method:"POST",
             headers:{
                 "content-type":"application/json"
@@ -39,20 +55,14 @@ const ServiceDetails = () => {
         .then(res => res.json())
         .then(data => {
             if(data.acknowledged){
-                alert("Review Added Successfully")
+                toast("Review Added Successfully", {autoClose:3000})
                 form.reset();
             }
-        })
-
+        }) 
+        .catch(error => console.error(error))
     }
+    
 
-    const [reviews, setReviews] = useState([]);
-
-    useEffect(() =>{
-        fetch("http://localhost:5000/reviews")
-        .then(res => res.json())
-        .then(data => setReviews(data))
-    }, [])
 
     return (
        <div>
@@ -86,7 +96,7 @@ const ServiceDetails = () => {
     </thead>
     <tbody>
        {
-        reviews.map(allReview => <AllReview
+        reviews?.map(allReview => <AllReview
         key={allReview._id}
         allReview={allReview}
         ></AllReview>)
@@ -127,7 +137,7 @@ const ServiceDetails = () => {
                         </div>
                         <div className="col-span-full sm:col-span-3">
                             <label for="image" className="text-sm">Image</label>
-                            <input id="image" type="text" placeholder="image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                            <input id="image" type="text" placeholder="Upload Image" name='image' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
                         </div>
                         <div className="col-span-full sm:col-span-3">
                             <label for="servicesId" className="text-sm">Services id</label>
@@ -154,7 +164,7 @@ const ServiceDetails = () => {
         </Link>
         }
 
-
+         <ToastContainer></ToastContainer>
        </div>
     );
 };

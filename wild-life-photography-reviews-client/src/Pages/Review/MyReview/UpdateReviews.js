@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import useTitle from '../../Shared/Hooks/useTitle';
 
 const UpdateReviews = ({handleDeleteReview}) => {
@@ -19,7 +20,7 @@ const UpdateReviews = ({handleDeleteReview}) => {
             review,
         }  
 
-        fetch(`http://localhost:5000/updateReviews/${StoredReviews._id}`, {
+        fetch(`https://wild-life-photography-reviews-server.vercel.app/updateReviews/${StoredReviews._id}`, {
             method: "PUT",
             headers:{
                 "content-type" : "application/json"
@@ -29,7 +30,7 @@ const UpdateReviews = ({handleDeleteReview}) => {
         .then(res => res.json())
         .then(data =>{
             if(data.modifiedCount > 0){
-                alert("user update successfully")
+                toast("user update successfully", {autoClose: 3000})
                 form.reset();
             }
         })
@@ -37,23 +38,10 @@ const UpdateReviews = ({handleDeleteReview}) => {
         console.log(allReview)
 
     }
-
-
-
-
+ 
     return (
-        <div>
-
-<label htmlFor="my-modal-3" className="btn">open modal</label>
-
-{/* Put this part before </body> tag */}
-<input type="checkbox" id="my-modal-3" className="modal-toggle" />
-<div className="modal">
-  <div className="modal-box relative">
-    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-    <p className="py-4"> 
-    <form onSubmit={handleUpdateReview} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+        <div> 
+<form onSubmit={handleUpdateReview} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
 		<fieldset className="p-6 rounded-md shadow-sm dark:bg-green-700 mt-10">
         <div className="space-y-2 w-full flex items-center justify-center">
 				<div>
@@ -80,10 +68,7 @@ const UpdateReviews = ({handleDeleteReview}) => {
 			</div>
 		</fieldset>
 	</form>
-    </p>
-  </div>
-</div>
-           
+           <ToastContainer></ToastContainer>
         </div>
     );
 };
