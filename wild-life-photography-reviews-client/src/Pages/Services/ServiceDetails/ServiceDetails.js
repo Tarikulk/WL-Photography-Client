@@ -15,7 +15,7 @@ const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]); 
     
     useEffect(() =>{
-        fetch("https://wild-life-photography-reviews-server.vercel.app/reviews")
+        fetch("https://wild-life-photography-reviews-server.vercel.app/allReviews")
         .then(res => res.json(
         ))
         .then(data =>{
