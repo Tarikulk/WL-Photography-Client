@@ -3,11 +3,11 @@ import React from 'react';
 const AllReview = ({allReview}) => {
  
     const {email, image, name, review} = allReview;
-    
+
     return (
             <tr> 
         <td>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 sm:w-1/2 sm:flex">
             <div className="avatar">
               <div className="w-24 rounded">
                 <img src={image} alt="Avatar Tailwind CSS Component" />

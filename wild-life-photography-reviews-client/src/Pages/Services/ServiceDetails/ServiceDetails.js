@@ -67,7 +67,7 @@ const ServiceDetails = () => {
     return (
        <div>
          <div className='mt-10'>
-            <div className="card card-compact w-full bg-base-100 shadow-xl">
+            <div className="card card-compact w-full bg-base-100 shadow-xl ">
   <figure><img src={details.img} className='w-full' style={{height:"300px"}} alt="Shoes" /></figure>
   <div className="card-body">
    <div className='flex justify-between items-center'>
