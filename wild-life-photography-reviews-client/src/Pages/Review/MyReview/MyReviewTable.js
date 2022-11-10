@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     const {review, name, servicesId, _id} = reviews;
-    console.log(reviews)
 
     const [services, setServices] = useState({});
 
@@ -29,7 +28,7 @@ const MyReviewTable = ({reviews, handleDeleteReview, handleUpdateReview}) => {
     </div>
     <p><span className='font-bold'>Review: </span>{review}</p>
     <div className="card-actions flex justify-between items-center w-full">
-      <Link to={`/updateReviews/${_id}`}  ><button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button></Link> 
+      <Link to={`/updateReviews/${_id}`} ><button onClick={() => handleUpdateReview(_id)} className="btn btn-primary">Edit</button></Link> 
       <button onClick={() => handleDeleteReview(_id)} className="btn btn-ghost">Delete</button>
     </div>
   </div>

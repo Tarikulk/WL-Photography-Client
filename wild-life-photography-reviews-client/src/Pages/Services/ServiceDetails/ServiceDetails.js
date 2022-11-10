@@ -143,6 +143,10 @@ const ServiceDetails = () => {
                             <label for="servicesId" className="text-sm">Services id</label>
                             <input id="servicesId" type="text" placeholder="services Id" name='servicesId' defaultValue={details?._id} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
                         </div>
+                        <div className="col-span-full sm:col-span-6">
+                            <label for="date" className="text-sm">Date</label>
+                            <input id="date" type="date" placeholder="date" name='date' defaultValue={details?._id} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                        </div>
                         <div className="col-span-full">
                             <label for="bio" className="text-sm">Review</label>
                             <textarea id="bio" placeholder="" name='review' className="p-2 w-full h-32 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"></textarea>

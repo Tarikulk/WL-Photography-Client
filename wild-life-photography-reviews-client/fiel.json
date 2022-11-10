@@ -1,0 +1,16 @@
+[
+    {
+        "name":"Lion photography",
+        "price":"400",
+        "img":"https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/lion-close-up-xavier-ortega.jpg",
+        "ratings":"4.7",
+        "description":"This photo is taken from a forest in Uganda This photo was taken on January 1st by our senior photographer who received a national award and has received a lot of attention online. This photo took 2 hours to shoot.Why Sony camera is used for this photo and zoom lens is used as line. This picture shows a lion walking through the middle of the field and the camera is looking at it for a reason"
+    },
+    {
+        "name":"Horse photography",
+        "price":"200",
+        "img":"https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/camargue-horse-running-in-water-at-beach-camargue-france-konrad-wothe--natureplcom.jpg",
+        "ratings":"4.4",
+        "description":"This picture shows a horse running along the seashore and galloping wildly. This photo of the horse galloping happily was taken by our senior photographer. Sony Camera is used for the film and language used is Joomla. This photo took 2 hours to shoot. This photo won the National Award for Wildlife and received a lot of response in the online world."
+    }
+]

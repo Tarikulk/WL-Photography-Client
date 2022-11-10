@@ -30,10 +30,7 @@ const MyReview = () => {
 
     }, [user?.email, userLogout])
 
-    const handleUpdateReview = (id) =>{
-        
-    }
-
+  
     const handleDeleteReview = (id) =>{
         const proceed = window.confirm("Are you sure, you want to delete this item ?")
         if(proceed){
@@ -51,8 +48,8 @@ const MyReview = () => {
         }
     }
 
-    return (
-        <div>
+    return ( 
+           <div>
             {  myReview.length > 0 ?
               <div className='w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 '>
                 {
@@ -60,7 +57,6 @@ const MyReview = () => {
                         key={reviews._id}
                         reviews={reviews}
                         handleDeleteReview={handleDeleteReview}
-                        handleUpdateReview={handleUpdateReview}
                         ></MyReviewTable>)
                 }
               </div>
