@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import useTitle from '../../Shared/Hooks/useTitle';
 
@@ -8,6 +8,11 @@ const Login = () => {
     useTitle("Login")
 
     const {signInUser, googleLogin, githubLogin} = useContext(AuthContext)
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
+
 
     const handleSubmit = event =>{
 		event.preventDefault();
@@ -37,8 +42,8 @@ const Login = () => {
                 console.log(data)
                 localStorage.setItem("wl-photography", data.token)
             })
-
 			form.reset();
+            navigate(from, {replace:true})
 		})
 		.catch(error => console.error(error));
 	};
@@ -64,6 +69,7 @@ const Login = () => {
             .then(data => {
                 console.log(data)
                 localStorage.setItem("wl-photography", data.token)
+                navigate(from, {replace:true})
             })
 
 
@@ -82,22 +88,22 @@ const Login = () => {
 
     return (
         <div className='flex items-center justify-center my-10'>
-        <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-600 text-white">
+        <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-500 text-black">
 <h1 className="text-2xl font-bold text-center">Sign In</h1>
 <form  onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
   
     <div className="space-y-1 text-sm">
-        <label for="username" className="block text-white">Email</label>
-        <input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-whit focus:dark:border-violet-400" />
+        <label for="username" className="block">Email</label>
+        <input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white focus:dark:border-black" />
     </div>
     <div className="space-y-1 text-sm">
         <label for="password" className="block text-whit">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-black" />
         <div className="flex justify-end text-xs text-whit">
             <a rel="noopener noreferrer" >Forgot Password?</a>
         </div>
     </div>
-    <button className="block w-full p-3 text-center rounded-sm text-white dark:bg-violet-400">Sign In</button>
+    <button className="block w-full p-3 text-center rounded-lg   text-black bg-white">Sign In</button>
 </form>
 <div className="flex items-center pt-4 space-x-1">
     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

@@ -33,10 +33,12 @@ const ServiceDetails = () => {
         const email = form.email.value;
         const servicesId = form.servicesId.value;
         const image = form.image.value;
+        const date = form.date.value;
         const review = form.review.value;
         console.log(name, email, servicesId, image, review)
         
         const allReview = { 
+            date,
             name, 
             email,
             servicesId,
@@ -67,7 +69,7 @@ const ServiceDetails = () => {
     return (
        <div>
          <div className='mt-10'>
-            <div className="card card-compact w-full bg-base-100 shadow-xl ">
+            <div className="card card-compact w-full bg-green-500 shadow-xl ">
   <figure><img src={details.img} className='w-full' style={{height:"300px"}} alt="Shoes" /></figure>
   <div className="card-body">
    <div className='flex justify-between items-center'>
@@ -145,7 +147,7 @@ const ServiceDetails = () => {
                         </div>
                         <div className="col-span-full sm:col-span-6">
                             <label for="date" className="text-sm">Date</label>
-                            <input id="date" type="date" placeholder="date" name='date' defaultValue={details?._id} className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                            <input id="date" type="date" placeholder="date" name='date' className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
                         </div>
                         <div className="col-span-full">
                             <label for="bio" className="text-sm">Review</label>

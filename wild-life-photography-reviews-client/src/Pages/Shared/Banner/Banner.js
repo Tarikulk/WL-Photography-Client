@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
         <div className='mt-10'>
-        <div className="p-6 py-12 dark:bg-violet-400 dark:text-gray-900 rounded-lg">
+        <div className="p-6 py-12 bg-green-500 dark:text-gray-900 rounded-lg">
  <div className="container mx-auto">
      <div className="flex flex-col lg:flex-row items-center justify-between">
          <h2 className="text-center text-6xl tracking-tighter font-bold">Up to <br className="sm:hidden" /> 50% Off

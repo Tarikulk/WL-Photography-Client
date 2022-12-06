@@ -57,7 +57,7 @@ const Section = () => {
      </div>
 
             <div className='mt-10'>
-            <section className="py-6 dark:bg-violet-400 dark:dark:text-gray-50 rounded-lg">
+            <section className="py-6 bg-green-500 dark:dark:text-gray-50 rounded-lg">
 	<div className="container grid grid-cols-2 gap-4 p-4 mx-auto md:grid-cols-4">
 		<img src={critters1} alt="" className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-3 md:row-start-1 dark:dark:bg-gray-500 aspect-square" />
 		<img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:dark:bg-gray-500 aspect-square" src= {deer1} />

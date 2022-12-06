@@ -9,7 +9,7 @@ const HomeCard = ({service}) => {
     image.push(img)
     return (
         <div>
-        <div className="card card-compact w-96 bg-base-100 shadow-xl mt-10">
+        <div className="card card-compact w-96 bg-green-500 text-black shadow-xl mt-10">
   <figure>
     <PhotoProvider>
       <div className='foo'>
@@ -29,7 +29,7 @@ const HomeCard = ({service}) => {
     {
         description.length > 100 ? 
         <>{description.slice(0, 100) + "..."}<Link to={`allServicesDetail/${_id}`}><span className='
-        text-red-500'>See Details</span></Link></>
+        text-white'>See Details...</span></Link></>
         :
         description
     }  

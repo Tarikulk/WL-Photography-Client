@@ -44,10 +44,10 @@ const AddServices = () => {
 
     return (
         <div>
-              <section className="p-6 dark:bg-gray-800 dark:text-gray-50 rounded-lg mt-20">
+              <section className="p-6 dark:bg-green-800 dark:text-gray-50 rounded-lg mt-20">
 	<form onSubmit={handleAddServices} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
  
-		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-green-600">
+		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-green-500">
 			<div className="space-y-2 col-span-full lg:col-span-1">
 				<p className="font-medium">Add Services</p>
 				<p className="text-xs">Add Your Personal Work !</p>

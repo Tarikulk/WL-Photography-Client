@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import useTitle from '../../Shared/Hooks/useTitle';
 
@@ -8,6 +8,10 @@ const Register = () => {
 	useTitle("Register")
 
 	const {createUser, updateUserProfile, githubLogin, googleLogin} = useContext(AuthContext);
+
+	const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = event =>{
 		event.preventDefault();
@@ -33,7 +37,9 @@ const Register = () => {
 		};
 
 		updateUserProfile(profile)
-		.then(() =>{})
+		.then(() =>{
+			navigate(from, {replace:true})
+		})
 		.catch(error => console.error(error));
 	}
 
@@ -42,6 +48,7 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+			navigate(from, {replace:true})
         })
         .catch(error => console.error(error))
     }
@@ -65,6 +72,7 @@ const Register = () => {
             .then(data => {
                 console.log(data)
                 localStorage.setItem("wl-photography", data.token)
+				navigate(from, {replace:true})
             })
 
         })
@@ -76,25 +84,25 @@ const Register = () => {
 
     return (
         <div className='flex items-center justify-center my-10'>
-            <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-600 text-white">
+            <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-500 text-white">
 	<h1 className="text-2xl font-bold text-center">Sign Up</h1>
 	<form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-white">Username</label>
-			<input type="text" name="name" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-whit focus:dark:border-violet-400" />
+			<input type="text" name="name" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-whit focus:dark:border-violet-400" />
 		</div>
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-white">Email</label>
-			<input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-whit focus:dark:border-violet-400" />
+			<input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-whit focus:dark:border-violet-400" />
 		</div>
 		<div className="space-y-1 text-sm">
 			<label for="password" className="block text-whit">Password</label>
-			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white dark:text-gray-100 focus:dark:border-violet-400" />
 			<div className="flex justify-end text-xs text-whit">
 				<a rel="noopener noreferrer" >Forgot Password?</a>
 			</div>
 		</div>
-		<button className="block w-full p-3 text-center rounded-sm text-white dark:bg-violet-400">Sign Up</button>
+		<button className="block w-full p-3 text-center rounded-lg text-black bg-white">Sign Up</button>
 	</form>
 	<div className="flex items-center pt-4 space-x-1">
 		<div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
