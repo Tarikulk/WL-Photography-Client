@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import useTitle from '../../Shared/Hooks/useTitle';
 
@@ -8,6 +8,7 @@ const UpdateReviews = ({handleDeleteReview}) => {
     useTitle("Edit")
   
     const StoredReviews = useLoaderData()
+    const navigate = useNavigate();
       
     const handleUpdateReview = (event) =>{
         event.preventDefault()
@@ -30,8 +31,9 @@ const UpdateReviews = ({handleDeleteReview}) => {
         .then(res => res.json())
         .then(data =>{
             if(data.modifiedCount > 0){
-                toast("user update successfully", {autoClose: 3000})
+                toast("user review updated successfully", {autoClose: 1000})
                 form.reset();
+                navigate("/myReviews")
             }
         })
         
@@ -68,7 +70,17 @@ const UpdateReviews = ({handleDeleteReview}) => {
 			</div>
 		</fieldset>
 	</form>
-           <ToastContainer></ToastContainer>
+           <ToastContainer position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+        ></ToastContainer>
         </div>
     );
 };

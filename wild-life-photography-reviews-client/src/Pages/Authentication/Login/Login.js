@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import useTitle from '../../Shared/Hooks/useTitle';
 
@@ -22,7 +23,7 @@ const Login = () => {
         
 		signInUser(email, password)
         .then(result => {
-			const user = result.user;
+			const user = result.user; 
             const currentUser = {
                 email: user.email
             }
@@ -40,12 +41,16 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success("user login successfully", {autoClose:1000})
                 localStorage.setItem("wl-photography", data.token)
             })
 			form.reset();
             navigate(from, {replace:true})
 		})
-		.catch(error => console.error(error));
+		.catch(error => {
+            console.error(error)
+            toast.error(error.message, {autoClose: 1000})
+        });
 	};
 
 
@@ -67,24 +72,28 @@ const Login = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
+                toast.success("user login successfully", {autoClose:1000})
                 localStorage.setItem("wl-photography", data.token)
                 navigate(from, {replace:true})
             })
 
 
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error)
+            toast.error(error.message, {autoClose:1000})
+        })
     }
 
-    const handleGithubLogin = () =>{
-        githubLogin()
-        .then(result =>{
-            const user = result.user;
-            console.log(user)
-        })
-        .catch(error => console.error(error))
-    }
+    // const handleGithubLogin = () =>{
+    //     githubLogin()
+    //     .then(result =>{
+    //         const user = result.user;
+    //         console.log(user)
+    //     })
+    //     .catch(error => console.error(error))
+    // }
 
     return (
         <div className='flex items-center justify-center my-10'>
@@ -121,6 +130,17 @@ const Login = () => {
     <Link to="/register" className="underline dark:text-gray-100"> Sign up</Link>
 </p>
 </div>
+<ToastContainer position="top-center"
+		autoClose={5000}
+		hideProgressBar={false}
+		newestOnTop={false}
+		closeOnClick
+		rtl={false}
+		pauseOnFocusLoss
+		draggable
+		pauseOnHover
+		theme="light"
+></ToastContainer>
     </div>
     );
 };

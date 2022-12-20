@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import useTitle from '../../Shared/Hooks/useTitle';
 
@@ -24,10 +25,14 @@ const Register = () => {
         .then(result => {
 			const user = result.user;
 			console.log(user)
+			toast.success("user created successfully", {autoClose: 1000})
 			form.reset();
 			handleUpdateUserProfile(name);
 		})
-		.catch(error => console.error(error));
+		.catch(error => {
+			console.error(error)
+			toast.error(error.message, {autoClose:1000})
+		});
 	};
 
 
@@ -40,7 +45,10 @@ const Register = () => {
 		.then(() =>{
 			navigate(from, {replace:true})
 		})
-		.catch(error => console.error(error));
+		.catch(error => {
+			console.error(error)
+			toast.error(error.message, {autoClose:1000})
+		});
 	}
 
 	const handleGoogleLogin = () =>{
@@ -48,9 +56,13 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+			toast.success("user login successfully", {autoClose: 1000})
 			navigate(from, {replace:true})
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+			console.error(error)
+			toast.error(error.message, {autoClose:1000})
+		})
     }
 
     const handleGithubLogin = () =>{
@@ -71,12 +83,16 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+				toast.success("user login successfully", {autoClose: 1000})
                 localStorage.setItem("wl-photography", data.token)
 				navigate(from, {replace:true})
             })
 
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+			console.error(error)
+			toast.error(error.message, {autoClose:1000})
+		})
     }
 
     
@@ -84,20 +100,20 @@ const Register = () => {
 
     return (
         <div className='flex items-center justify-center my-10'>
-            <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-500 text-white">
+            <div className="w-full max-w-md p-8 space-y-3 rounded-xl  bg-green-500">
 	<h1 className="text-2xl font-bold text-center">Sign Up</h1>
 	<form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-white">Username</label>
-			<input type="text" name="name" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-whit focus:dark:border-violet-400" />
+			<input type="text" name="name" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white   focus:dark:border-violet-400" required/>
 		</div>
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-white">Email</label>
-			<input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-whit focus:dark:border-violet-400" />
+			<input type="email" name="email" id="username" placeholder="email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white text-whit focus:dark:border-violet-400" required />
 		</div>
 		<div className="space-y-1 text-sm">
-			<label for="password" className="block text-whit">Password</label>
-			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white dark:text-gray-100 focus:dark:border-violet-400" />
+			<label for="password" className="block text-white">Password</label>
+			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 text-black focus:dark:border-violet-400" required />
 			<div className="flex justify-end text-xs text-whit">
 				<a rel="noopener noreferrer" >Forgot Password?</a>
 			</div>
@@ -126,6 +142,17 @@ const Register = () => {
 		<Link to="/login" className="underline dark:text-gray-100"> Sign in</Link>
 	</p>
 </div>
+	<ToastContainer position="top-center"
+		autoClose={5000}
+		hideProgressBar={false}
+		newestOnTop={false}
+		closeOnClick
+		rtl={false}
+		pauseOnFocusLoss
+		draggable
+		pauseOnHover
+		theme="light"
+	></ToastContainer>
         </div>
     );
 };
